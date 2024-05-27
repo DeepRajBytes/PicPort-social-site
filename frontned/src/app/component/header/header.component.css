@@ -1,0 +1,11 @@
+/* Add this to your styles.css or a similar stylesheet */
+header {
+  transition: background-image 0.5s ease;
+}
+
+.header-scroll {
+  background-image: linear-gradient(to right, #60a5fa, #a855f7, #ec4899);
+  box-shadow: none;
+}
+
+  

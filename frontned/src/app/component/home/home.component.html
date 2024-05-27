@@ -1,0 +1,72 @@
+<div class="p-9 mt-6">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div *ngFor="let post of postData.slice().reverse()" (click)="postdetails(post)" class="relative bg-transparent overflow-hidden shadow-md group transition-all duration-300">
+      <div class="relative overflow-hidden rounded-lg transition-all duration-300 group-hover:shadow-xl">
+        <img [src]="post.image" alt="Post image" class="w-full h-full sm:h-64 md:h-72 lg:h-80 object-cover">
+      </div>
+
+      <div class="pl-2">
+        <h3 class="text-lg font-bold pl-2">{{ post.title }}</h3>
+
+        <!-- <p class="text-sm text-gray-200">&#64;{{ post.user.username }}</p> -->
+        
+          <div class="flex items-center">
+            <div class="flex-shrink-0 mr-1 mb-2">
+              <div class="bg-gray-700 rounded-full w-7 h-7 flex items-center justify-center">
+                <!-- Placeholder for user's initial -->
+                <span class="text-white font-bold">{{ post.user.name.charAt(0).toUpperCase() }}</span>
+              </div>
+            </div>
+            <div>
+              <p class=" text-lg text-gray-200 cursor-pointer hover:underline" (click)="userProfile(post.user.username); $event.stopPropagation()">{{ post.user.username }}</p>
+            </div>
+            <!-- <div class="ml-20  mb-2">
+              <button (click)="toggleFollow(post.user.username, post); $event.stopPropagation()" 
+                    class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-auto">
+              {{ post.followed ? 'Unfollow' : 'Follow' }}
+            </button>
+            </div> -->
+          </div>
+          
+     
+      <button (click)="toggleLike(post); $event.stopPropagation()" class="absolute top-2 right-2 p-2 text-gray-500 transition-colors duration-300">
+        <i [ngClass]="post.liked ? 'fas fa-heart text-red-500 text-2xl' : 'far fa-heart text-gray-500 text-2xl'"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+  
+
+
+  <!-- home.component.html -->
+<!-- <div class="p-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div *ngFor="let post of postData" class="relative bg-white rounded-lg overflow-hidden shadow-md group">
+        <img [src]="post.image" alt="Post image" class="w-full h-auto sm:h-64 md:h-72 lg:h-80 object-cover">
+        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div class="p-4 text-white">
+            <h3 class="text-lg font-bold">{{ post.title }}</h3>
+            
+            <p class="mt-2 text-sm text-gray-400">&#64;{{ post.user.name }}</p>
+            
+            <button (click)="toggleLike(post)" class="absolute top-2 right-2 bg-white p-2 rounded-full">
+             
+              <svg *ngIf="!post.liked" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5.291l2.64-2.64a3.545 3.545 0 014.72 4.72l-9.36 9.36-9.36-9.36a3.545 3.545 0 114.72-4.72L12 5.291z" />
+              </svg>
+              <svg *ngIf="post.liked" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->
+
+   <!-- home.component.html -->
+<!-- home.component.html -->

@@ -1,0 +1,30 @@
+<header [ngClass]="{ 'header-scroll': isScrolled }" class="bg-gradient-to-r from-blue-400 via-green-500 to-teal-500 p-1 shadow-lg fixed w-full top-0 z-10">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="text-white text-3xl font-bold">
+        <span routerLink="home" class="animate-pulse">PICPORT</span>
+      </div>
+      <div *ngIf="!isLoggedIn()">
+        <!-- Button section to handle login/logout -->
+        <button routerLink="login" mat-flat-button color="accent" >Login</button>
+
+        <!-- <button mat-flat-button color="accent" *ngIf="isUserProfilePresent()">Login</button> -->
+        <!-- <button mat-flat-button color="accent" *ngIf="isUserProfilePresent()">Logout</button> -->
+      </div>
+      <div *ngIf="isLoggedIn()" class="flex items-center space-x-2">
+        <button class="pl-2" mat-flat-button color="warn" routerLink="create">Create</button>
+        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon" routerLink="saved">
+          <mat-icon class="pt-1">favorite</mat-icon>
+        </button>
+        <button mat-button [matMenuTriggerFor]="menu">
+          <img class="h-8 w-8 rounded-full" src="https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg?w=740" alt="Profile Picture">
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="profile">Profile</button>
+          <!-- <button mat-menu-item routerLink="saved">Saved Post</button> -->
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+      </div>
+    </div>
+  </header>
+  
+  

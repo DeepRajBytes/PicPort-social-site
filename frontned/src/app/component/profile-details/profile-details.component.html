@@ -1,0 +1,100 @@
+<div class="container mx-auto p-4">
+  
+    <div class="bg-transparent shadow rounded-lg p-6 mb-6 image-upload">
+        <div class="flex items-center justify-center circle">
+           
+            <div class="bg-gray-700 rounded-full w-20 h-20 flex items-center justify-center">
+              
+                <span *ngIf="!profileDetails?.userProfile" class="text-white font-bold">{{ profileDetails?.name.charAt(0).toUpperCase() }}</span>
+                <img *ngIf="profileDetails?.userProfile"  [src]="profileDetails?.userProfile" alt="">
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            
+            <h2 class="text-2xl font-bold">{{ profileDetails?.username }}</h2>
+           
+            <p class="text-gray-300">{{ profileDetails?.name  }}</p>
+           
+            <p class="text-gray-600">{{ profileDetails?.bio }}</p>
+        </div>
+      
+        <div class="flex justify-between sm:justify-center space-x-4 mt-4 px-9">
+            <div class="text-center">
+                <p class="text-lg font-bold">{{ profileDetails?.posts.length}}</p>
+                <p class="text-gray-600">Post</p>
+            </div>
+            
+            <div class="text-center" (click)="openModal('Followers', profileDetails.follower)">
+                <p class="text-lg font-bold">{{ profileDetails?.follower.length }}</p>
+                <p class="text-gray-600">Followers</p>
+            </div>
+            
+            <div class="text-center" (click)="openModal('Following', profileDetails.following)">
+                <p class="text-lg font-bold">{{ profileDetails?.following.length}}</p>
+                <p class="text-gray-600">Following</p>
+            </div>
+        </div>
+        <div class="flex justify-center mt-1 space-x-4">
+            <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" (click)="toggleFollow()">
+                {{ isFollowing ? 'Unfollow' : 'Follow' }}
+              </button>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" (click)="shareProfile()">Share</button>
+        </div>
+    </div>
+
+    
+    <mat-tab-group>
+        <mat-tab label="Posts">
+           
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div *ngIf="profileDetails?.posts.length === 0" class="border border-gray-300 rounded-lg p-6 mt-8">
+                    <div  class="text-center">
+                        <h3 class="text-xl font-semibold text-gray-600">Not posted yet</h3>
+                    </div>
+                </div>
+                <div *ngFor="let post of profileDetails?.posts" class="bg-white shadow-md rounded-lg overflow-hidden mt-5">
+                   
+                    <img [src]="post.image" alt="Post Image"  (click)="postdetails(post)"  class="w-full h-auto object-cover">
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Liked">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div *ngIf="profileDetails?.savedpost.length === 0" class="border border-gray-300 rounded-lg p-6 mt-8">
+                    <div  class="text-center">
+                        <h3 class="text-xl font-semibold text-gray-600">Not Liked yet</h3>
+                    </div>
+                </div>
+                <div *ngFor="let likedPost of profileDetails?.savedpost" class="bg-white shadow-md rounded-lg overflow-hidden mt-5">
+                   
+                    <img [src]="likedPost.image" alt="Liked Post Image" (click)="postdetails(likedPost)" class="w-full h-auto object-cover">
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+
+    <div id="myModal" class="modal" [ngClass]="{'show': isModalOpen}">
+        <div class="modal-content">
+            <span class="close" (click)="closeModal()">&times;</span>
+            <h2>{{ modalTitle }}</h2>
+            <div *ngFor="let user of modalData" class="flex items-center mb-4 ">
+                <div class="circlemodel">
+                    <span *ngIf="!user?.userProfile" class="text-white font-bold ">{{ user?.name.charAt(0).toUpperCase() }}</span>
+                    <img *ngIf="user?.userProfile"  [src]="user.userProfile"  class="w-10 h-10 rounded-full mr-4" alt="">
+                    <mat-divider></mat-divider>
+                </div>
+                <div>
+                    <p class="text-gray-200 cursor-pointer p-5 mt-2" (click)="getuserProfile(user.username); $event.stopPropagation()">{{ user.username }}</p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+ 

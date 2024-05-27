@@ -1,0 +1,37 @@
+<div  class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+    <div class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-lg shadow-lg max-w-md w-full transform transition-all duration-500 ease-in-out hover:scale-105">
+      <h2 class="text-2xl font-bold mb-6 text-center text-white">Login</h2>
+      <form [formGroup]="loginform" (ngSubmit)="submit()">
+        <div class="mb-4">
+          <label class="block text-gray-200 text-sm font-bold mb-2" for="username">
+            Email or Username
+          </label>
+          <input formControlName="identifier" class="shadow appearance-none border border-gray-300 bg-white bg-opacity-20 rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline" id="identifier" type="text" placeholder="Enter your email or username">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-200 text-sm font-bold mb-2" for="password">
+            Password
+          </label>
+          <input formControlName="password" class="shadow appearance-none border border-gray-300 bg-white bg-opacity-20 rounded w-full py-2 px-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password">
+        </div>
+        <!-- <div class="mb-4">
+          <label class="inline-flex items-center">
+            <input formControlName="acceptTerms" type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
+            <span class="ml-2 text-gray-200">Accept terms and conditions</span>
+          </label>
+        </div> -->
+        <div class="flex items-center justify-between mb-6">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            Sign In
+          </button>
+          <a href="#" class="inline-block align-baseline font-bold text-sm text-blue-300 hover:text-blue-500">
+            Forgot Password?
+          </a>
+        </div>
+        <div class="text-center">
+          <p class="text-gray-200">Don't have an account? <a href="signup" class="text-white hover:underline">Register</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+  

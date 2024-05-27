@@ -1,0 +1,63 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+    <div class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-lg shadow-lg max-w-md w-full transform transition-all duration-500 ease-in-out hover:scale-105">
+      <h2 class="text-2xl font-bold mb-6 text-center text-white">Update Profile</h2>
+      <form [formGroup]="Profileeditorform" (ngSubmit)="submit()">
+  
+        <div class="image-upload" (click)="openFileInput()">
+            <label for="profile-pic-upload" class="circle">
+              <img *ngIf="uploadedImageSrc" [src]="uploadedImageSrc" alt="Uploaded Image" />
+              <span *ngIf="!uploadedImageSrc">Upload Profile Pic</span>
+              <input type="file" id="profile-pic-upload" (change)="onFileUpload($event)" accept="image/*" style="display: none;">
+            </label>
+          </div>
+          <div *ngIf="Profileeditorform.get('image')?.invalid && Profileeditorform.get('image')?.touched" class="text-red-500 text-sm">Profile image is required.</div>
+        
+        <div class="mb-4">
+          <label class="block text-gray-200 text-sm font-bold mb-2" for="name">Name</label>
+          <input formControlName="name" class="shadow appearance-none border border-gray-300 bg-white bg-opacity-20 rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Enter your name">
+          <div *ngIf="Profileeditorform.get('name')?.invalid && Profileeditorform.get('name')?.touched" class="text-red-500 text-sm">Name is required.</div>
+        </div>
+  
+        <div class="mb-4">
+          <label class="block text-gray-200 text-sm font-bold mb-2" for="username">Username</label>
+          <input formControlName="username" class="shadow appearance-none border border-gray-300 bg-white bg-opacity-20 rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your username">
+          <div *ngIf="Profileeditorform.get('username')?.invalid && Profileeditorform.get('username')?.touched" class="text-red-500 text-sm">
+            <div *ngIf="Profileeditorform.get('username')?.errors?.['required']">Username is required.</div>
+            <div *ngIf="Profileeditorform.get('username')?.errors?.['whitespace']">Username cannot contain spaces.</div>
+          </div>
+          <!-- <div *ngIf="errorMessageUsername" class="text-red-500 text-sm">{{ errorMessageUsername }}</div> -->
+        </div>
+  
+        <div class="mb-4">
+          <label class="block text-gray-200 text-sm font-bold mb-2" for="email">Email</label>
+          <input formControlName="email" class="shadow appearance-none border border-gray-300 bg-white bg-opacity-20 rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Enter your email address">
+          <div *ngIf="Profileeditorform.get('email')?.invalid && Profileeditorform.get('email')?.touched" class="text-red-500 text-sm">
+            <div *ngIf="Profileeditorform.get('email')?.errors?.['required']">Email is required.</div>
+            <div *ngIf="Profileeditorform.get('email')?.errors?.['email']">Invalid email address.</div>
+          </div>
+          <!-- <div *ngIf="errorMessageEmail" class="text-red-500 text-sm">{{ errorMessageEmail }}</div> -->
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-200 text-sm font-bold mb-2" for="text">Bio</label>
+            <input formControlName="bio" class="shadow appearance-none border border-gray-300 bg-white bg-opacity-20 rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline" id="text" type="text" placeholder="Enter about your self">
+            <div *ngIf="Profileeditorform.get('bio')?.invalid && Profileeditorform.get('email')?.touched" class="text-red-500 text-sm">
+              <div *ngIf="Profileeditorform.get('email')?.errors?.['required']">Email is required.</div>
+              <div *ngIf="Profileeditorform.get('email')?.errors?.['email']">Invalid email address.</div>
+            </div>
+            <!-- <div *ngIf="errorMessageEmail" class="text-red-500 text-sm">{{ errorMessageEmail }}</div> -->
+          </div>
+  
+       
+  
+       
+  
+        <div class="flex items-center justify-between mb-6">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Update</button>
+         
+        </div>
+        
+      </form>
+    </div>
+  </div>
+  

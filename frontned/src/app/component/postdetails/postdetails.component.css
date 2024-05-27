@@ -1,0 +1,23 @@
+input[type="text"] {
+    background-color:transparent;;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    transition: border-color 0.3s;
+  }
+  
+  input[type="text"]:focus {
+    border-bottom-color: #3b82f6; 
+    outline: none;
+  }
+  
+
+   
+   .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }

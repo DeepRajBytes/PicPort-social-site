@@ -1,0 +1,63 @@
+<div class="p-5 lg:p-5">
+  <section class="lg:grid grid-cols-4 lg:gap-1">
+    <div class="col-span-2 flex items-center flex-col">
+      <img [src]="postData?.image" alt="Product Image" class="h-full w-96 object-cover rounded-lg shadow-lg">
+    </div>
+
+    <div class="col-span-2 space-y-3 mt-5 lg:mt-5   top-0">
+      <div class="space-y-2 flex items-center">
+        <div class="flex-shrink-0 mr-1">
+          <div class="bg-gray-300 rounded-full w-10 h-10 flex items-center justify-center">
+            <!-- Placeholder for user's initial -->
+            <span class="text-white font-bold">{{ postData?.user.name.charAt(0).toUpperCase() }}</span>
+          </div>
+        </div>
+        <div>
+          <p class="font-semibold text-lg text-gray-400 cursor-pointer" (click)="userProfile(postData?.user.username)">{{ postData?.user.username }}</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-2xl font-bold">{{postData?.title}}</p>
+        <p class="text-gray-600 mt-3">{{postData?.description}}</p>
+        <p class="text-gray-600 mt-1">#{{postData?.topic}}</p>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-heart text-red-500 text-2xl"></i>
+        <span>{{postData?.like.length}}</span>
+      </div>
+
+      <!-- Comment Section -->
+      <div class="mt-5">
+        <h2 class="text-xl font-bold mb-4">What you think</h2>
+
+        <form [formGroup]="commentform" (ngSubmit)="submitcomment()" class="flex items-center space-x-2">
+          <input type="text" formControlName="comment" name="comment" placeholder="Add a comment..."
+            class="flex-grow p-2 border-b border-gray-300 focus:outline-none focus:border-blue-500 bg-transparent"
+            required>
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
+            Post
+          </button>
+        </form>
+
+        <div class="mt-5 max-h-64 overflow-y-auto space-y-3 no-scrollbar">
+          <div *ngFor="let comment of postData?.comments.slice().reverse()"
+            class="flex items-start p-3 border border-gray-200 rounded-lg shadow-sm">
+            <div class="flex-shrink-0 mr-4">
+              <div class="bg-gray-300 rounded-full w-10 h-10 flex items-center justify-center">
+                <!-- Placeholder for user's initial -->
+                <span class="text-white font-bold">{{comment.user.name.charAt(0).toUpperCase()}}</span>
+              </div>
+            </div>
+            <div>
+              <p class="text-gray-800 font-semibold">{{ comment.user.username }}</p>
+              <p class="text-gray-600">{{ comment.comment }}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
